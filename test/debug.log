@@ -1,0 +1,493 @@
+# Logfile created on 2010-12-17 18:04:23 -0300 by logger.rb/25413
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (52.5ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (14.7ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (33.0ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (8.5ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (7.6ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (13.2ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.7ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (16.6ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (12.3ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (32.9ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (9.0ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (32.4ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (8.1ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mSQL (0.7ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (16.5ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (12.7ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (36.8ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (7.1ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (27.1ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (6.9ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (16.1ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (25.9ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (14.9ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (6.9ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (17.2ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (11.8ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (20.1ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (12.9ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (25.0ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (9.6ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (7.4ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (13.2ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.3ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (17.6ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (12.3ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (25.7ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (9.4ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (20.7ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (9.5ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (21.4ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (13.0ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (24.9ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (7.3ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (13.1ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (12.5ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (16.8ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (12.3ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (32.1ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (6.6ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (24.1ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (6.8ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (26.3ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (13.5ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (24.5ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (7.0ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (26.9ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (7.1ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (27.4ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (13.6ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (44.8ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (7.1ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (39.7ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (7.6ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (39.4ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (14.2ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (24.5ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (7.1ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (26.9ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (7.4ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.7ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (34.3ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (9.1ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (7.5ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (18.4ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.6ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (8.0ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (13.0ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (26.5ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (13.8ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (27.7ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (7.4ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (39.2ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (9.1ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.7ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (49.6ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (15.1ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (36.2ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (8.4ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (33.0ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (7.6ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (51.0ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (14.0ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (12.7ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (25.5ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (7.5ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (10.3ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.7ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (46.7ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (12.6ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (30.8ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (7.6ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (13.9ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (12.5ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (32.8ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (14.6ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (29.7ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (8.6ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.6ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (8.0ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (14.5ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.3ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.7ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (30.9ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (12.4ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (44.6ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (7.8ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (37.5ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (9.0ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
+  [1m[36mSQL (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35mSQL (0.3ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (43.0ms)[0m  [1mDROP TABLE "hickwalls"[0m
+  [1m[35mSQL (14.0ms)[0m  CREATE TABLE "hickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_squawk" varchar(255), "last_squawked_at" datetime) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (30.4ms)[0m  DROP TABLE "wickwalls"
+  [1m[36mSQL (7.7ms)[0m  [1mCREATE TABLE "wickwalls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "last_tweet" varchar(255), "last_tweeted_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+  [1m[36mSQL (19.7ms)[0m  [1mDROP TABLE "woodpeckers"[0m
+  [1m[35mSQL (13.9ms)[0m  CREATE TABLE "woodpeckers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mYaffleTest::Hickwall Load (0.2ms)[0m  [1mSELECT "hickwalls".* FROM "hickwalls"[0m
+  [1m[35mYaffleTest::Wickwall Load (0.1ms)[0m  SELECT "wickwalls".* FROM "wickwalls"
