@@ -1,6 +1,6 @@
 ActiveRecord::Schema.define(:version => 0) do
 
-  create_table :invoices do |t|
+  create_table :invoices, :force => true do |t|
     t.integer   'invid'
     t.datetime  'invdate'
     t.float     'amount'
