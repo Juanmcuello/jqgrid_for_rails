@@ -1,11 +1,16 @@
 module JqgridsHelper
 
+  # == options
+  #
+  # :html_tags
+  # :on_document_ready
+  #
   def jqgrid grid_id, options = {}, grid_options = {}, nav_options = {}
 
     html_output = []
 
     # Table
-    html_output << content_tag(:table, nil, :id => grid_id)  unless options[:no_html]
+    html_output << content_tag(:table, nil, :id => grid_id) if options[:html_tags]
     js_output   =  "jQuery(\"##{grid_id}\").jqGrid(#{grid_options.to_json});"
 
     # Pager
@@ -13,7 +18,7 @@ module JqgridsHelper
 
       pager_id = id_from_pager_option(grid_options[:pager])
 
-      html_output << content_tag(:div, nil, :id => pager_id) unless options[:no_html]
+      html_output << content_tag(:div, nil, :id => pager_id) if options[:html_tags]
 
       if nav_options
         js_output << "jQuery(\"##{grid_id}\").jqGrid(\"navGrid\", \"##{pager_id}\", #{nav_options.to_json});"

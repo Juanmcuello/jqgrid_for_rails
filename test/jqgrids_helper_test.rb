@@ -11,6 +11,7 @@ class JqgridsHelperTest < Test::Unit::TestCase
     @template = MockView.new
 
     grid_id = 'grid_id'
+    options = {:html_tags => true}
     grid_options = { :url => "/jqGridModel?model=Wine" }
 
     expected  = '<table id="'+grid_id+'"></table>' + "\n"
@@ -18,7 +19,7 @@ class JqgridsHelperTest < Test::Unit::TestCase
     expected <<    'jQuery("#'+grid_id+'").jqGrid({"url":"/jqGridModel?model=Wine"});' + "\n"
     expected << '</script>'
 
-    assert_equal(expected, @template.jqgrid(grid_id, {} , grid_options))
+    assert_equal(expected, @template.jqgrid(grid_id, options , grid_options))
 
   end
 
@@ -34,15 +35,15 @@ class JqgridsHelperTest < Test::Unit::TestCase
     expected = expected_grid(grid_id, pager_id, options)
     assert_equal(expected, @template.jqgrid(grid_id, options, grid_options))
 
-    options = {:on_document_ready => true, :no_html => true }
+    options = {:on_document_ready => true, :html_tags => true }
     expected = expected_grid(grid_id, pager_id, options)
     assert_equal(expected, @template.jqgrid(grid_id, options, grid_options))
   end
 
   def expected_grid grid_id, pager_id, options
     expected = ''
-    expected << '<table id="'+grid_id+'"></table>' + "\n" unless options[:no_html]
-    expected << '<div id="'+pager_id+'"></div>' + "\n" unless options[:no_html]
+    expected << '<table id="'+grid_id+'"></table>' + "\n" if options[:html_tags]
+    expected << '<div id="'+pager_id+'"></div>' + "\n" if options[:html_tags]
     expected << '<script>' + "\n"
 
     js =  'jQuery(document).ready(function() {
