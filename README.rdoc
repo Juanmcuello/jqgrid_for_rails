@@ -1,0 +1,12 @@
+== JqgridForRails
+
+TODO: Introduction.
+
+
+== Maintainers
+
+* Juan Manuel Cuello (http://github.com/Juanmcuello)
+
+== License
+
+Copyright (c) 2010 Juan M. Cuello, released under the MIT license
