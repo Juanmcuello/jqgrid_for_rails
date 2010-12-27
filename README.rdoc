@@ -6,6 +6,8 @@ This is a simple plug-in to create JqGrid(http://www.trirand.com/blog) javascrip
 
 There is an example application at:
 
+https://github.com/Juanmcuello/jqgrid_for_rails_example
+
 == Views
 
 To generate the grid, you can first create a method in a helper and then call the +jqgrid+ method to generate the java script code. For example, if you have an invoices_helper.rb file, you can define a method there:
