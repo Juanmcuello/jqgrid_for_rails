@@ -1,6 +1,98 @@
 == JqgridForRails
 
-TODO: Introduction.
+This is a simple plug-in to create JqGrid(http://www.trirand.com/blog) javascript code easily and cleaner inside rails views.
+
+== Example
+
+There is an example application at:
+
+== Views
+
+To generate the grid, you can first create a method in a helper and then call the +jqgrid+ method to generate the java script code. For example, if you have an invoices_helper.rb file, you can define a method there:
+
+  include JqgridsHelper
+
+  def invoices_jqgrid
+
+    options = {:html_tags => true}
+    grid_options = {
+      :url => '/invoices',
+      :datatype => 'json',
+      :mtype => 'GET',
+      :colNames => ['Inv No','Date'],
+      :colModel  => [
+        { :name => 'invid',   :index => 'invid',    :width => 55 },
+        { :name => 'invdate', :index => 'invdate',  :width => 90 },
+      ],
+      :pager => '#invoices_pager',
+      :rowNum => 10,
+      :rowList => [10, 20, 30],
+      :caption => 'My first grid',
+      :onSelectRow => "function() { alert('Row selected!');}".to_json_var
+    }
+
+    jqgrid 'invoices_list', options, grid_options
+  end
+
+
+Now you can use the helper in the view:
+
+  <%= raw(invoices_jqgrid) %>
+
+Or, if you are using Rails 2.3.x :
+
+  <%= invoices_jqgrid %>
+
+This will result in something like:
+
+  <table id="invoices_list"></table>
+  <div id="invoices_pager"></div>
+  <script>
+    jQuery("#invoices_list").jqGrid({
+      "url": "/invoices",
+      "datatype": "json",
+      "mtype": "GET",
+      "colNames": ["Inv No","Date"],
+      "colModel": [
+        {"name":"invid", "index":"invid", "width":55},
+        {"name":"invdate", "index":"invdate", "width":90}],
+      "pager": "#invoices_pager",
+      "rowNum": 10,
+      "rowList": [10,20,30],
+      "caption": "My first grid",
+      "onSelectRow": function() { alert('Row selected!');}});
+
+    jQuery("#invoices_list").jqGrid("navGrid", "#invoices_pager", {});
+
+  </script
+
+Note: resulting code was indented for clarification.
+
+You can do it better using +content_for+ :
+
+At the views:
+
+  <% content_for :head do %>
+    <%= invoices_jqgrid %>
+  <% end %>
+
+
+Don't forget to include the jquery and jqgrid javascript and stylesheet files!
+
+== Controllers
+
+You can use the +json_for_jqgrid+ method at the controllers to generate the json response for the grid. It receives the records found by the +paginate+ method offered by will_paginate[https://github.com/mislav/will_paginate].
+
+  def index
+
+    @columns = ['invid', 'invdate']
+
+    @invoices = Invoice.paginate(:page => params[:page], :per_page => params[:rows] )
+
+    if request.xhr?
+      render :json => json_for_jqgrid(@invoices, @columns, {:page => params[:page]})
+    end
+  end
 
 
 == Maintainers
