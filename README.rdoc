@@ -8,6 +8,14 @@ There is an example application at:
 
 https://github.com/Juanmcuello/jqgrid_for_rails_example
 
+
+== Installation
+
+To install it as a plugin just:
+
+  $ rails plugin install git@github.com:Juanmcuello/jqgrid_for_rails.git
+
+
 == Views
 
 To generate the grid, you can first create a method in a helper and then call the +jqgrid+ method to generate the java script code. For example, if you have an invoices_helper.rb file, you can define a method there:
