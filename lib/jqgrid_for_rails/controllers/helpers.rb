@@ -11,8 +11,13 @@ module JqgridForRails
       # +columns+ is an array with the name of the fields in the order they
       # should be returned.
       #
-      # options[:id_column] says which is the column that should be used as the row id
-      # options[:page] says the page number
+      # === Options
+      #
+      # [:id_column]
+      #   Says which is the column that should be used as the row id
+      #
+      # :page]
+      #   Says the page number
       #
       def json_for_jqgrid records, columns = nil, options = {}
 
@@ -33,7 +38,9 @@ module JqgridForRails
         }.to_json
       end
 
-      # Returns the order by string created using the params received from the jqgrid.
+      # Returns the 'order by' string created using the params received from the jqgrid.
+      #
+      # === Example
       #
       #   order_by_from_params({'sidx' => 'updated_at', 'sord' => 'asc'})
       #   => 'updated_at asc'
