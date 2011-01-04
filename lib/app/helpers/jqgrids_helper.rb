@@ -1,6 +1,6 @@
 module JqgridsHelper
 
-  # Generates the jqGrid javascript code. Also html tags for the table and pager can be gerated.
+  # Generates the jqGrid javascript code. Also html tags for the table and pager can be generated.
   # The javascript code is enclosed between the <script> tags.
   #
   # The +grid_id+ parameter should be the id of the html table tag that will contain the grid.
@@ -9,7 +9,7 @@ module JqgridsHelper
   # === Options
   #
   # [:html_tags]
-  #   If true, <table> tag for the grid, and <div> tag for the table will be gerated as well.
+  #   If true, <table> tag for the grid, and <div> tag for the table will be generated as well.
   #
   # [:on_document_ready]
   #   If true, all the javascript code will be enclosed inside a +jQuery(document).ready+ function
