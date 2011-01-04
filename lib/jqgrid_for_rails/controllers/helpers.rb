@@ -32,6 +32,17 @@ module JqgridForRails
           end
         }.to_json
       end
+
+      # Returns the order by string created using the params received from the jqgrid.
+      #
+      #   order_by_from_params({'sidx' => 'updated_at', 'sord' => 'asc'})
+      #   => 'updated_at asc'
+      #
+      def order_by_from_params params
+        order_by = params['sidx'] if params['sidx']
+        order_by << " #{params['sord']}" if params['sord'] && order_by
+        order_by
+      end
     
     end
   end
