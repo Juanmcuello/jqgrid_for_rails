@@ -11,7 +11,11 @@ https://github.com/Juanmcuello/jqgrid_for_rails_example
 
 == Installation
 
-To install it as a plugin just:
+As a gem:
+
+  $ gem install jqgrid_for_rails
+
+As a plugin:
 
   $ rails plugin install git@github.com:Juanmcuello/jqgrid_for_rails.git
 
