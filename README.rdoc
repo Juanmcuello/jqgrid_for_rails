@@ -17,7 +17,7 @@ As a gem:
 
 As a plugin:
 
-  $ rails plugin install git@github.com:Juanmcuello/jqgrid_for_rails.git
+  $ rails plugin install git://github.com/Juanmcuello/jqgrid_for_rails.git
 
 
 == Views
