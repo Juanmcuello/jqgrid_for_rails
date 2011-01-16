@@ -57,4 +57,14 @@ class JqgridsHelperTest < ActiveSupport::TestCase
 
   end
 
+  test "extract the pager id from the options" do
+    @template = MockView.new
+
+    assert_equal 'my_pager_div', @template.send(:pager_id_from_options, {:pager => "jQuery('#my_pager_div')"})
+    assert_equal 'my_pager_div', @template.send(:pager_id_from_options, {:pager => 'jQuery("#my_pager_div")'})
+    assert_equal 'my_pager_div', @template.send(:pager_id_from_options, {:pager => "#my_pager_div"})
+    assert_equal 'my_pager_div', @template.send(:pager_id_from_options, {:pager => "my_pager_div"})
+  end
+
+
 end

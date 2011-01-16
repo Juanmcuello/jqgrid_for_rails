@@ -71,7 +71,7 @@ module JqgridsHelper
     # Pager
     if grid_options[:pager]
 
-      pager_id = id_from_pager_option(grid_options[:pager])
+      pager_id = pager_id_from_options(grid_options)
 
       html_output << content_tag(:div, nil, :id => pager_id) if options[:html_tags]
 
@@ -87,15 +87,41 @@ module JqgridsHelper
     html_output.join("\n")
   end
 
+
 private
+
+  # Extracts the pager id from the options hash.
+  #
+  # jQgrid accepts three different formats to set the pager id option.
+  #
+  # 1 - jQuery('#my_pager_div')
+  # 2 - #my_pager_div
+  # 3 - my_pager_div
+  #
+  # === Example
+  #
+  #   pager_id_from_options({:pager => "jQuery('#my_pager_id')"})
+  #     => 'my_pager_id'
+  #
+  def pager_id_from_options options
+    pager_option = options[:pager]
+
+    # jQuery('#my_pager_div')
+    if pager_option =~ /^jQuery\(('|")#\w+('|")\)$/
+      pager_option.match(/#\w+/).to_s[1..-1]
+    # #my_pager_div
+    elsif pager_option =~ /^#\w+$/
+      pager_option.match(/#\w+/).to_s[1..-1]
+    # my_pager_div
+    else
+      pager_option
+    end
+  end
 
   def wrap_with_document_ready! str
     str.replace("jQuery(document).ready(function() {#{str}});")
   end
 
-  def id_from_pager_option pager_option
-    pager_option.match(/#\w+/).to_s[1..-1]
-  end
 
 end
 
