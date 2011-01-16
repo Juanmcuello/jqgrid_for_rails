@@ -4,7 +4,7 @@ class MockView < ActionView::Base
   include JqgridsHelper
 end
 
-class JqgridsHelperTest < Test::Unit::TestCase
+class JqgridsHelperTest < ActiveSupport::TestCase
 
   def test_jqgrid_small
 
