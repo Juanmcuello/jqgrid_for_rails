@@ -4,7 +4,7 @@ class MockView < ActionView::Base
   include JqgridsHelper
 end
 
-class JqgridsHelperTest < ActiveSupport::TestCase
+class JqgridsHelperTest < Test::Unit::TestCase
 
   def test_jqgrid_small
 
@@ -57,7 +57,7 @@ class JqgridsHelperTest < ActiveSupport::TestCase
 
   end
 
-  test "extract the pager id from the options" do
+  def testi_pager_id_from_options
     @template = MockView.new
 
     assert_equal 'my_pager_div', @template.send(:pager_id_from_options, {:pager => "jQuery('#my_pager_div')"})
