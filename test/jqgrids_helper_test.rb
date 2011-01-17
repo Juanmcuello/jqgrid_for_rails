@@ -55,7 +55,7 @@ class JqgridsHelperTest < Test::Unit::TestCase
     expected << '</script>'
 
   end
-  
+
   def test_jqgrid_nav_options
     @template = MockView.new
 
@@ -64,13 +64,13 @@ class JqgridsHelperTest < Test::Unit::TestCase
     grid_options = {:pager => "##{pager_id}"}
     options = {:on_document_ready => true, :html_tags => true}
     nav_items = {:del => true}
-    del_config = {:closeOnEscape => true, :msg => "test", :reloadAfterSubmit => true}
+    del_config = {:closeOnEscape => true}
 
     expected = '<table id="'+grid_id+'"></table>' + "\n"
     expected << '<div id="'+pager_id+'"></div>' + "\n"
     expected << "<script>" + "\n"
     str =  'jQuery("#'+grid_id+'").jqGrid({"pager":"#'+pager_id+'"});'
-    str << 'jQuery("#'+grid_id+'").jqGrid("navGrid", "#'+pager_id+'", {"del":true}, {}, {}, {"closeOnEscape":true,"msg":"test","reloadAfterSubmit":true});'
+    str << 'jQuery("#'+grid_id+'").jqGrid("navGrid", "#'+pager_id+'", {"del":true}, {}, {}, {"closeOnEscape":true});'
     expected << "jQuery(document).ready(function() {#{str}});" + "\n"
     expected << "</script>"
 
