@@ -50,11 +50,31 @@ class JqgridsHelperTest < Test::Unit::TestCase
             jQuery("#' + grid_id + '").jqGrid({
               "pager":jQuery(\'#' + pager_id + '\')
             });
-            jQuery("#grid_id").jqGrid("navGrid", "#gridpager", {});
           });'
     expected << js.gsub(/\n\s+/, '') + "\n"
     expected << '</script>'
 
+  end
+  
+  def test_jqgrid_nav_options
+    @template = MockView.new
+
+    grid_id = 'grid_id'
+    pager_id = 'pager_id'
+    grid_options = {:pager => "##{pager_id}"}
+    options = {:on_document_ready => true, :html_tags => true}
+    nav_items = {:del => true}
+    del_config = {:closeOnEscape => true, :msg => "test", :reloadAfterSubmit => true}
+
+    expected = '<table id="'+grid_id+'"></table>' + "\n"
+    expected << '<div id="'+pager_id+'"></div>' + "\n"
+    expected << "<script>" + "\n"
+    str =  'jQuery("#'+grid_id+'").jqGrid({"pager":"#'+pager_id+'"});'
+    str << 'jQuery("#'+grid_id+'").jqGrid("navGrid", "#'+pager_id+'", {"del":true}, {}, {}, {"closeOnEscape":true,"msg":"test","reloadAfterSubmit":true});'
+    expected << "jQuery(document).ready(function() {#{str}});" + "\n"
+    expected << "</script>"
+
+    assert_equal(expected, @template.jqgrid(grid_id,options,grid_options,nav_items,nil,nil,del_config))
   end
 
   def testi_pager_id_from_options

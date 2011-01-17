@@ -60,7 +60,7 @@ module JqgridsHelper
   #
   #  jqgrid 'invoices_list', options, grid_options
   #
-  def jqgrid grid_id, options = {}, grid_options = {}, nav_options = {}
+  def jqgrid grid_id, options = {}, grid_options = {}, *nav_options
 
     html_output = []
 
@@ -75,8 +75,8 @@ module JqgridsHelper
 
       html_output << content_tag(:div, nil, :id => pager_id) if options[:html_tags]
 
-      if nav_options
-        js_output << "jQuery(\"##{grid_id}\").jqGrid(\"navGrid\", \"##{pager_id}\", #{nav_options.to_json});"
+      unless nav_options.empty?
+        js_output << "jQuery(\"##{grid_id}\").jqGrid(\"navGrid\", \"##{pager_id}\", #{format_nav_options(nav_options)});"
       end
     end
 
@@ -86,7 +86,6 @@ module JqgridsHelper
 
     html_output.join("\n")
   end
-
 
 private
 
@@ -122,6 +121,9 @@ private
     str.replace("jQuery(document).ready(function() {#{str}});")
   end
 
+  def format_nav_options nav_options
+    nav_options.map {|e| (e || {}).to_json}.join(', ')
+  end
 
 end
 
