@@ -16,8 +16,8 @@ module JqgridForRails
       # [:id_column]
       #   Says which is the column that should be used as the row id
       #
-      # :page]
-      #   Says the page number
+      # [:page]
+      #   Says the page number (Deprecated. The page number is now inferred from +records+)
       #
       def json_for_jqgrid records, columns = nil, options = {}
 
@@ -26,7 +26,7 @@ module JqgridForRails
         columns ||= records.first.attributes.keys
 
         options[:id_column] ||= columns.first
-        options[:page]      ||= 1
+        options[:page]      ||= records.current_page
 
         { :page => options[:page],
           :total => records.total_pages,
