@@ -1,0 +1,8 @@
+== 0.2.0
+
+* enhancements
+  * Navigator options fully supported.
+
+* bug fix
+  * Get pager id from the options hash in any of the formats accepted by
+    jqGrid.
