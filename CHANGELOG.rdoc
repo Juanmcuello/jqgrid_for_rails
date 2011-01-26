@@ -1,3 +1,6 @@
+* enhancements
+  * Get the page number for the json response from the will_paginate resultset.
+
 == 0.2.0
 
 * enhancements

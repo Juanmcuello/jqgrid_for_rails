@@ -106,7 +106,7 @@ You can use the +json_for_jqgrid+ method at the controllers to generate the json
     @invoices = Invoice.paginate(:page => params[:page], :per_page => params[:rows] )
 
     if request.xhr?
-      render :json => json_for_jqgrid(@invoices, @columns, {:page => params[:page]})
+      render :json => json_for_jqgrid(@invoices, @columns)
     end
   end
 
