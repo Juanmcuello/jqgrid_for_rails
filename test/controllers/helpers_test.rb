@@ -26,4 +26,9 @@ class ControllerHelpersTest < ActionController::TestCase
     assert_nil @controller.order_by_from_params(params)
   end
 
+  test "order_by_from with blank sidx" do
+    params = {'sidx' => ''}
+    assert_nil @controller.order_by_from_params(params)
+  end
+
 end

@@ -46,7 +46,7 @@ module JqgridForRails
       #   => 'updated_at asc'
       #
       def order_by_from_params params
-        order_by = params['sidx'] if params['sidx']
+        order_by = params['sidx'] unless params['sidx'].blank?
         order_by << " #{params['sord']}" if params['sord'] && order_by
         order_by
       end
