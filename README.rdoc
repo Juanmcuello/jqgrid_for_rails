@@ -1,8 +1,18 @@
 == JqgridForRails
 
-This is a simple plug-in to create JqGrid(http://www.trirand.com/blog) javascript code easily and cleaner inside rails views.
+This is a simple plug-in to create a JqGrid[http://www.trirand.com/blog] javascript code easily inside rails views.
+
+It is extremely flexible, all the ruby code is converted to java script code, so you can use all the jqgrid supported features. It is not an abstraction layer from the jqGrid apis, instead, you type the same code you would do to crate the grid using javascript but in Ruby. The code should follow the jqgrid api definition.
 
 == Example
+
+To create a call to a jqgrid api for the pager that in javascript would be:
+
+  jQuery("#invoices_list").jqGrid("navGrid", "#invoices_pager", {"search":true,"refresh":false});
+
+you type in ruby:
+
+  to_jqgrid_api 'invoices_list', [:navGrid, '#invoices_pager', {:search => true, :refresh => false}]
 
 There is an example application at:
 
@@ -22,7 +32,7 @@ As a plugin:
 
 == Views
 
-To generate the grid, you can first create a method in a helper and then call the +jqgrid+ method to generate the java script code. For example, if you have an invoices_helper.rb file, you can define a method there:
+To generate the grid, you can first create a method in a helper and then call the +to_jqgrid_api+ method to generate the java script code. For example, if you have an invoices_helper.rb file, you can define a method there:
 
   module InvoicesHelper
 
@@ -30,8 +40,7 @@ To generate the grid, you can first create a method in a helper and then call th
 
     def invoices_jqgrid
 
-      options = {:html_tags => true}
-      grid_options = {
+      grid_options = [{
         :url => '/invoices',
         :datatype => 'json',
         :mtype => 'GET',
@@ -45,9 +54,9 @@ To generate the grid, you can first create a method in a helper and then call th
         :rowList => [10, 20, 30],
         :caption => 'My first grid',
         :onSelectRow => "function() { alert('Row selected!');}".to_json_var
-      }
+      }]
 
-      jqgrid 'invoices_list', options, grid_options
+      to_jqgrid_api 'invoices_list', grid_options
     end
   end
 
@@ -61,8 +70,6 @@ Or, if you are using Rails 2.3.x :
 
 This will result in something like:
 
-  <table id="invoices_list"></table>
-  <div id="invoices_pager"></div>
   <script>
     jQuery("#invoices_list").jqGrid({
       "url": "/invoices",
@@ -77,19 +84,16 @@ This will result in something like:
       "rowList": [10,20,30],
       "caption": "My first grid",
       "onSelectRow": function() { alert('Row selected!');}});
-
-    jQuery("#invoices_list").jqGrid("navGrid", "#invoices_pager", {});
-
   </script
 
 Note: resulting code was indented for clarification.
 
 You can do it better using +content_for+ :
 
-At the views:
+In the view:
 
   <% content_for :head do %>
-    <%= invoices_jqgrid %>
+    <%= raw(invoices_jqgrid) %>
   <% end %>
 
 
@@ -97,7 +101,13 @@ Don't forget to include the jquery and jqgrid javascript and stylesheet files!
 
 == Controllers
 
-You can use the +json_for_jqgrid+ method at the controllers to generate the json response for the grid. It receives the records found by the +paginate+ method offered by will_paginate[https://github.com/mislav/will_paginate].
+There are convenient methods available in the controllers
+
+=== json_for_jqgrid
+
+This method generates the json response for the grid. It takes the records found by the +paginate+ method offered by will_paginate[https://github.com/mislav/will_paginate].
+
+In the controller:
 
   def index
 
@@ -110,6 +120,14 @@ You can use the +json_for_jqgrid+ method at the controllers to generate the json
     end
   end
 
+=== order_by_from_params
+
+This method creates an active record +order+ string using the params received from the grid.
+
+  @invoices = Invoice.paginate(
+    :page     => params[:page],
+    :per_page => params[:rows],
+    :order    => order_by_from_params(params))
 
 == Maintainers
 

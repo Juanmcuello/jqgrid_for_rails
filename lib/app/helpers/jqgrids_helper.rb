@@ -8,16 +8,20 @@ module JqgridsHelper
   #
   # === Options
   #
-  # [:html_tags]
-  #   If true, <table> tag for the grid, and <div> tag for the table will be generated as well.
+  # [:script_tags]
+  #   If false, <script> tags will not be generated. Default true.
   #
   # [:on_document_ready]
   #   If true, all the javascript code will be enclosed inside a +jQuery(document).ready+ function
   #
-  # === Grid Options
+  # === Functions
   #
-  # This hash can contain any option accepted by the jqGrid. The has will encoded to json to create
-  # the javascript code for the grid.
+  # This is an array where each item is an array of parameters for each java script fuction to create
+  # in the js string.
+  #
+  # In the simplest case, it will be an array of just one item (that will be an array also) with the
+  # main grid options. These options can be any option accepted by the jqGrid. Each item will be encoded
+  # to json to create the javascript code for the grid.
   #
   # See http://www.trirand.com/jqgridwiki/doku.php?id=wiki:options
   #
@@ -25,17 +29,13 @@ module JqgridsHelper
   # using the +to_json_var+ method.
   #
   # For example:
-  # :onLoadComplete => "function() { alert('This is a function!');}".to_json_var
-  #
-  # === Nav Options
-  #
-  # This hash can contain any option accepted by the nav options of jqGrid.
+  #   :onLoadComplete => "function() { alert('This is a function!');}".to_json_var
   #
   # === Example
   #
-  #  options = {:on_document_ready => true, :html_tags => false}
+  #  options = {:on_document_ready => true, :script_tags => false}
   #
-  #  grid_options = {
+  #  grid_options = [{
   #    :url => '/invoices',
   #    :datatype => 'json',
   #    :mtype => 'GET',
@@ -56,38 +56,27 @@ module JqgridsHelper
   #    :viewrecords => true,
   #    :caption => 'My first grid',
   #    :onSelectRow => "function() { alert('Row selected!');}".to_json_var
-  #  }
+  #  }]
   #
-  #  jqgrid 'invoices_list', options, grid_options
+  #  pager_options = [:navGrid, "#my_pager_id", {:del => true }, {}, {}, {:closeOnEscape => true}]
   #
-  def jqgrid grid_id, options = {}, grid_options = {}, *nav_options
+  #  to_jqgrid_api 'invoices_list', [grid_options, pager_options], options
+  #
+  def to_jqgrid_api div_id, functions, options = {}
 
-    html_output = []
+    options[:on_document_ready] ||= false
+    options[:script_tags] = true if options[:script_tags].nil?
 
-    # Table
-    html_output << content_tag(:table, nil, :id => grid_id) if options[:html_tags]
-    js_output   =  "jQuery(\"##{grid_id}\").jqGrid(#{grid_options.to_json});"
-
-    # Pager
-    if grid_options[:pager]
-
-      pager_id = pager_id_from_options(grid_options)
-
-      html_output << content_tag(:div, nil, :id => pager_id) if options[:html_tags]
-
-      unless nav_options.empty?
-        js_output << "jQuery(\"##{grid_id}\").jqGrid(\"navGrid\", \"##{pager_id}\", #{format_nav_options(nav_options)});"
-      end
+    result = functions.map do |v|
+      ".jqGrid(#{v.map { |v| (v || {}).to_json}.join(', ')})"
     end
+    js = "jQuery(\"##{div_id}\")" + result.join('') + ';'
 
-    wrap_with_document_ready! js_output if options[:on_document_ready]
-
-    html_output << "<script>" << js_output << "</script>"
-
-    html_output.join("\n")
+    wrap_with_document_ready!(js)  if options[:on_document_ready]
+    wrap_with_script_tags!(js)     if options[:script_tags]
+    js
   end
 
-private
 
   # Extracts the pager id from the options hash.
   #
@@ -117,12 +106,14 @@ private
     end
   end
 
+private
+
   def wrap_with_document_ready! str
     str.replace("jQuery(document).ready(function() {#{str}});")
   end
 
-  def format_nav_options nav_options
-    nav_options.map {|e| (e || {}).to_json}.join(', ')
+  def wrap_with_script_tags! str
+    str.replace("<script>\n#{str}\n</script>")
   end
 
 end

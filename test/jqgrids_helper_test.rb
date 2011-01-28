@@ -11,15 +11,13 @@ class JqgridsHelperTest < Test::Unit::TestCase
     @template = MockView.new
 
     grid_id = 'grid_id'
-    options = {:html_tags => true}
     grid_options = { :url => "/jqGridModel?model=Wine" }
 
-    expected  = '<table id="'+grid_id+'"></table>' + "\n"
-    expected << '<script>' + "\n"
+    expected =  '<script>' + "\n"
     expected <<    'jQuery("#'+grid_id+'").jqGrid({"url":"/jqGridModel?model=Wine"});' + "\n"
     expected << '</script>'
 
-    assert_equal(expected, @template.jqgrid(grid_id, options , grid_options))
+    assert_equal(expected, @template.to_jqgrid_api(grid_id, [[grid_options]], {:script_tags => true}))
 
   end
 
@@ -27,32 +25,31 @@ class JqgridsHelperTest < Test::Unit::TestCase
 
     @template = MockView.new
 
-    grid_id = 'grid_id'
-    pager_id = 'gridpager'
-    grid_options = { :pager => "jQuery('##{pager_id}')".to_json_var }
+    grid_id       = 'grid_id'
+    pager_id      = 'gridpager'
+    grid_options  = { :pager => "jQuery('##{pager_id}')".to_json_var }
 
     options = {:on_document_ready => true }
     expected = expected_grid(grid_id, pager_id, options)
-    assert_equal(expected, @template.jqgrid(grid_id, options, grid_options))
+    assert_equal(expected, @template.to_jqgrid_api(grid_id, [[grid_options]], options))
 
-    options = {:on_document_ready => true, :html_tags => true }
+    options = {:on_document_ready => true }
     expected = expected_grid(grid_id, pager_id, options)
-    assert_equal(expected, @template.jqgrid(grid_id, options, grid_options))
+    assert_equal(expected, @template.to_jqgrid_api(grid_id, [[grid_options]], options))
   end
 
   def expected_grid grid_id, pager_id, options
-    expected = ''
-    expected << '<table id="'+grid_id+'"></table>' + "\n" if options[:html_tags]
-    expected << '<div id="'+pager_id+'"></div>' + "\n" if options[:html_tags]
-    expected << '<script>' + "\n"
+
+    options[:script_tags] ||= true
 
     js =  'jQuery(document).ready(function() {
             jQuery("#' + grid_id + '").jqGrid({
               "pager":jQuery(\'#' + pager_id + '\')
             });
           });'
-    expected << js.gsub(/\n\s+/, '') + "\n"
-    expected << '</script>'
+    js.gsub!(/\n\s+/, '')
+    js = "<script>\n#{js}\n</script>" if options[:script_tags]
+    js
 
   end
 
@@ -62,22 +59,17 @@ class JqgridsHelperTest < Test::Unit::TestCase
     grid_id = 'grid_id'
     pager_id = 'pager_id'
     grid_options = {:pager => "##{pager_id}"}
-    options = {:on_document_ready => true, :html_tags => true}
-    nav_items = {:del => true}
-    del_config = {:closeOnEscape => true}
+    options = {:on_document_ready => true, :script_tags => true}
 
-    expected = '<table id="'+grid_id+'"></table>' + "\n"
-    expected << '<div id="'+pager_id+'"></div>' + "\n"
-    expected << "<script>" + "\n"
-    str =  'jQuery("#'+grid_id+'").jqGrid({"pager":"#'+pager_id+'"});'
-    str << 'jQuery("#'+grid_id+'").jqGrid("navGrid", "#'+pager_id+'", {"del":true}, {}, {}, {"closeOnEscape":true});'
+    expected = "<script>" + "\n"
+    str =  'jQuery("#'+grid_id+'").jqGrid({"pager":"#'+pager_id+'"}).jqGrid("navGrid", "#'+pager_id+'", {"del":true}, {}, {}, {"closeOnEscape":true});'
     expected << "jQuery(document).ready(function() {#{str}});" + "\n"
     expected << "</script>"
 
-    assert_equal(expected, @template.jqgrid(grid_id,options,grid_options,nav_items,nil,nil,del_config))
+    assert_equal(expected, @template.to_jqgrid_api(grid_id, [[grid_options], [:navGrid, "##{pager_id}", {:del => true }, {}, {}, {:closeOnEscape => true}]], options))
   end
 
-  def testi_pager_id_from_options
+  def test_pager_id_from_options
     @template = MockView.new
 
     assert_equal 'my_pager_div', @template.send(:pager_id_from_options, {:pager => "jQuery('#my_pager_div')"})
@@ -86,5 +78,17 @@ class JqgridsHelperTest < Test::Unit::TestCase
     assert_equal 'my_pager_div', @template.send(:pager_id_from_options, {:pager => "my_pager_div"})
   end
 
+  def test_chained_functions
+    @template = MockView.new
+    div_id = 'my_grid'
+    functions = [
+      [:navButtonAdd, '#pager', { :caption => 'Add'}],
+      [:navSeparatorAdd, '#pager']]
+
+    expected = 'jQuery("#'+div_id+'").jqGrid("navButtonAdd", "#pager", {"caption":"Add"}).jqGrid("navSeparatorAdd", "#pager");'
+
+    assert_equal expected, @template.to_jqgrid_api(div_id, functions, {:script_tags => false})
+
+  end
 
 end
