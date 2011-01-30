@@ -26,7 +26,7 @@ module JqgridsHelper
   #
   # A simple call to generate a navigation bar:
   #
-  #   to_jqgrid_api 'invoices_list', [:navGrid, '#invoices_pager', {:search => true, :refresh => false}]
+  #   jqgrid_api 'invoices_list', [:navGrid, '#invoices_pager', {:search => true, :refresh => false}]
   #     => jQuery("#invoices_list").jqGrid("navGrid", "#invoices_pager", {"search":true,"refresh":false});
   #
   # A more complete example, to create a grid and a pager with a custom button, without the script tags
@@ -61,10 +61,10 @@ module JqgridsHelper
   #
   #   pager_button = [:navButtonAdd, "#invoices_pager", {:caption => 'Add', :onClickButton => 'function() {alert("Button!")}'.to_json_var }]
   #
-  #   to_jqgrid_api 'invoices_list', grid, pager, pager_button, options
+  #   jqgrid_api 'invoices_list', grid, pager, pager_button, options
   #
   #
-  def to_jqgrid_api div_id, *args
+  def jqgrid_api div_id, *args
 
     options = args.extract_options!
 
