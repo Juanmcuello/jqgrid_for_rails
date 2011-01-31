@@ -81,13 +81,12 @@ class JqgridsHelperTest < Test::Unit::TestCase
   def test_chained_functions
     @template = MockView.new
     div_id = 'my_grid'
-    functions = [
-      [:navButtonAdd, '#pager', { :caption => 'Add'}],
-      [:navSeparatorAdd, '#pager']]
+    nav_button =  [:navButtonAdd, '#pager', { :caption => 'Add'}]
+    nav_separator =  [:navSeparatorAdd, '#pager']
 
     expected = 'jQuery("#'+div_id+'").jqGrid("navButtonAdd", "#pager", {"caption":"Add"}).jqGrid("navSeparatorAdd", "#pager");'
 
-    assert_equal expected, @template.jqgrid_api(div_id, *functions, {:script_tags => false})
+    assert_equal expected, @template.jqgrid_api(div_id, nav_button, nav_separator, {:script_tags => false})
 
   end
 
