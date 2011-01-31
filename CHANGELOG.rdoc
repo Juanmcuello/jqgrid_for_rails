@@ -1,5 +1,7 @@
+== 1.0.0
 
 * enhancements
+  * Support for chained functions.
   * The 'jqgrid' method is renamed and rewritten to fully support calls to jqgrid apis.
   * Get the page number for the json response from the will_paginate resultset.
 
