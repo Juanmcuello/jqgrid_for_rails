@@ -3,7 +3,7 @@ module JqgridForRails
     # Those helpers are convenience methods added to ApplicationController.
     module Helpers
       
-      # Returns a json string ready to be send to a jqgrid component.
+      # Returns a json string ready to be sent to a jqgrid component.
       #
       # +records+ should be the result of an active record query through
       # the +paginate+ method offered by will_paginate.
@@ -21,9 +21,7 @@ module JqgridForRails
       #
       def json_for_jqgrid records, columns = nil, options = {}
 
-        return if records.empty?
-
-        columns ||= records.first.attributes.keys
+        columns ||= (records.first.attributes.keys rescue [])
 
         options[:id_column] ||= columns.first
         options[:page]      ||= records.current_page
