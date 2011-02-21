@@ -6,8 +6,8 @@ module JqgridsHelper
   #
   # ==== Parameters
   #
-  # * +grid_id+ - This is the id of the html table tag that will contain the grid.
-  # * +*args+ - Each item in the args array will be translated to a jqgrid api function. Each item
+  # * <tt>grid_id</tt> - This is the id of the html table tag that will contain the grid.
+  # * <tt>*args</tt> - Each item in the args array will be translated to a jqgrid api function. Each item
   #   should be an array whose elements will be encoded to json to create the jqgrid api function.
   #   All subsequent functions after the first one will be chained.
   #   See the examples for details.
@@ -16,21 +16,19 @@ module JqgridsHelper
   #
   # This method accepts an options hash as their last parameter. The accepted options are:
   #
-  # [:script_tags]
-  #   If false, <script> tags will not be generated. Default true.
+  # * <tt>:script_tags</tt> - If <tt>false</tt>, <tt><script></tt> tags will not be generated. Default +true+.
   #
-  # [:on_document_ready]
-  #   If true, all the javascript code will be enclosed inside a +jQuery(document).ready+ function.
+  # * <tt>:on_document_ready</tt> - If <tt>true</tt>, all the javascript code will be enclosed inside a <tt>jQuery(document).ready</tt> function.
   #
   # ==== Examples
   #
   # A simple call to generate a navigation bar:
   #
   #   jqgrid_api 'invoices_list', [:navGrid, '#invoices_pager', {:search => true, :refresh => false}]
-  #     => jQuery("#invoices_list").jqGrid("navGrid", "#invoices_pager", {"search":true,"refresh":false});
+  #     #=> jQuery("#invoices_list").jqGrid("navGrid", "#invoices_pager", {"search":true,"refresh":false});
   #
   # A more complete example, to create a grid and a pager with a custom button, without the script tags
-  # and with the js code enclosed inside a a +jQuery(document).ready+ function.
+  # and with the js code enclosed inside a <tt>jQuery(document).ready</tt> function.
   #
   #   options = {:on_document_ready => true, :html_tags => false}
   #
@@ -85,14 +83,14 @@ module JqgridsHelper
   #
   # jQgrid accepts three different formats to set the pager id option.
   #
-  # 1 - jQuery('#my_pager_div')
-  # 2 - #my_pager_div
-  # 3 - my_pager_div
+  # 1. <tt>jQuery('#my_pager_div')</tt>
+  # 2. <tt>#my_pager_div</tt>
+  # 3. <tt>my_pager_div</tt>
   #
   # ==== Example
   #
   #   pager_id_from_options({:pager => "jQuery('#my_pager_id')"})
-  #     => 'my_pager_id'
+  #     #=> 'my_pager_id'
   #
   def pager_id_from_options options
     pager_option = options[:pager]

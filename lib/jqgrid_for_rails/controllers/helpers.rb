@@ -5,19 +5,16 @@ module JqgridForRails
       
       # Returns a json string ready to be sent to a jqgrid component.
       #
-      # +records+ should be the result of an active record query through
-      # the +paginate+ method offered by will_paginate.
+      # * +records+ - Should be the result of an active record query through
+      #   the +paginate+ method offered by will_paginate.
+      # * +columns+ - Array with the name of the fields in the order they
+      #   should be returned.
       #
-      # +columns+ is an array with the name of the fields in the order they
-      # should be returned.
+      # ==== Options
       #
-      # === Options
+      # * <tt>:id_column</tt> - Says which is the column that should be used as the row id.
       #
-      # [:id_column]
-      #   Says which is the column that should be used as the row id
-      #
-      # [:page]
-      #   Says the page number (Deprecated. The page number is now inferred from +records+)
+      # * <tt>:page</tt> - Says the page number (Deprecated. The page number is now inferred from +records+).
       #
       def json_for_jqgrid records, columns = nil, options = {}
 
@@ -38,10 +35,10 @@ module JqgridForRails
 
       # Returns the 'order by' string created using the params received from the jqgrid.
       #
-      # === Example
+      # ==== Example
       #
       #   order_by_from_params({'sidx' => 'updated_at', 'sord' => 'asc'})
-      #   => 'updated_at asc'
+      #   #=> 'updated_at asc'
       #
       def order_by_from_params params
         order_by = params['sidx'] unless params['sidx'].blank?
