@@ -12,9 +12,15 @@ module JqgridForRails
       #
       # ==== Options
       #
-      # * <tt>:id_column</tt> - Says which is the column that should be used as the row id.
+      # * <tt>:id_column</tt> - Says which is the column that should be used as
+      #   the row id.
       #
-      # * <tt>:page</tt> - Says the page number (Deprecated. The page number is now inferred from +records+).
+      # * <tt>:id_prefix</tt> - Optional. If specified, the +column_id+ option
+      #   will be concatenated to this prefix. This helps to keep the html id
+      #   unique in the document.
+      #
+      # * <tt>:page</tt> - Says the page number (Deprecated. The page number is
+      #   now inferred from +records+.
       #
       def json_for_jqgrid records, columns = nil, options = {}
 
@@ -27,7 +33,7 @@ module JqgridForRails
           :total => records.total_pages,
           :records => records.total_entries,
           :rows => records.map do |r| {
-            :id => r.attributes[options[:id_column]],
+            :id => "#{options[:id_prefix]}#{r.attributes[options[:id_column]]}",
             :cell => r.attributes.values_at(*columns)}
           end
         }.to_json

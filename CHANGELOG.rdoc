@@ -1,4 +1,7 @@
 
+* enhancements
+  * Support prefix in the id column of the json response.
+
 * bug fixes
   * In 'json_for_jqgrid' method do not return nil if +records+ is empty and return the
     json string in spite of that.
