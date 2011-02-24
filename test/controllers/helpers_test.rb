@@ -39,10 +39,14 @@ class ControllerHelpersTest < ActionController::TestCase
   test "json_for_grid with one record and id prefix" do
     tmp_record  = Invoice.create({:invid => 1, :invdate => '2011-01-01 00:00:00', :amount => 10, :tax => 1, :total => 11, :note => '' })
     records     = Invoice.paginate(:page => 1)
-    expected    = '{"total":1,"rows":[{"cell":["2011-01-01T00:00:00Z",10.0,11.0],"id":"mygrid_row_1"}],"page":1,"records":1}'
+    json        = @controller.json_for_jqgrid(records, ['invdate', 'amount', 'total' ], {:id_column => 'invid', :id_prefix => 'mygrid_row_'})
+    hash        = ActiveSupport::JSON.decode(json)
     Invoice.delete(tmp_record.id)
-    assert_equal expected, @controller.json_for_jqgrid(records, ['invdate', 'amount', 'total' ], {:id_column => 'invid', :id_prefix => 'mygrid_row_'})
+    assert_equal hash["total"], 1
+    assert_equal hash["page"], 1
+    assert_equal hash["records"], 1
+    assert_equal hash["rows"][0]["cell"], ["2011-01-01T00:00:00Z", 10.0, 11.0]
+    assert_equal hash["rows"][0]["id"], "mygrid_row_1"
   end
-
 
 end
