@@ -33,7 +33,12 @@ class ControllerHelpersTest < ActionController::TestCase
 
   test "json_for_grid with empty records result" do
     records = Invoice.paginate(:page => 1)
-    assert_equal '{"total":0,"rows":[],"page":1,"records":0}', @controller.json_for_jqgrid(records)
+    json    = @controller.json_for_jqgrid(records)
+    hash    = ActiveSupport::JSON.decode(json)
+    assert_equal 0, hash['total']
+    assert_equal [], hash['rows']
+    assert_equal 1, hash['page']
+    assert_equal 0, hash['records']
   end
 
   test "json_for_grid with one record and id prefix" do
