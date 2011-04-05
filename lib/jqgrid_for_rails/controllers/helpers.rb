@@ -3,6 +3,50 @@ module JqgridForRails
     # Those helpers are convenience methods added to ApplicationController.
     module Helpers
 
+      # Returns an array to be used as col_model for the grid where each item
+      # is a hash for each column. Each hash will have at least two keys by
+      # default, the +name+ and the +index+, whose values will be the camelized
+      # name of the column. Other keys will be included if present in the +options+
+      # hash.
+      #
+      # * +columns+ - Array with the name of the columns to include in the
+      #   col_model.
+      #
+      # ==== Options
+      #
+      # Every item in the options hash will be a property in the col_model for
+      # every column, unless the item is also a hash, where only will be included
+      # in the specified columns. An item can be also a Proc, that will be called
+      # passing +columns+ as parameter.
+      #
+      # ==== Examples
+      #
+      #   col_model_for_jqgrid(['inv_date', 'total' ])
+      #
+      #     #=> [{:name=>"InvDate", :index=>"InvDate"}, {:name=>"Total", :index=>"Total"}]
+      #
+      #   col_model_for_jqgrid(['inv_date', 'total' ], {:width => 100})
+      #
+      #     #=> [{:name=>"InvDate", :index=>"InvDate", :width=>100}, {:name=>"Total", :index=>"Total", :width=>100}]
+      #
+      #   col_model_for_jqgrid(['inv_date', 'total'], {:width => {'inv_date' => 100}})
+      #
+      #     #=> [{:name => 'InvDate', :index => 'InvDate', :width => 100}, {:name => 'Total', :index => 'Total'}]
+      #
+      #   col_model_for_jqgrid(['inv_date'], {:prop => Proc.new {|c| c.camelize}})
+      #
+      #     #=> [{:name => 'InvDate', :index => 'InvDate', :prop => 'InvDate'}]
+      #
+      def col_model_for_jqgrid columns, options = {}
+        columns.map do |c|
+          h = {}
+          h[:name] = c.camelize
+          h[:index] = c.camelize
+          h.merge property_from_options(c, options)
+        end
+
+      end
+
       # Returns a json string ready to be sent to a jqgrid component.
       #
       # * +records+ - Should be the result of an active record query through
@@ -71,6 +115,20 @@ module JqgridForRails
          :cell => attribs.values_at(*columns) }
       end
 
+      def property_from_options col_name, options
+        h = {}
+        options.each do |k, v|
+          case v.class.to_s
+          when "Proc"
+            h[k] = v.call(col_name)
+          when "Hash"
+            h[k] = v[col_name] if v.has_key?(col_name)
+          else
+            h[k] = v
+          end
+        end
+        h
+      end
     end
   end
 end

@@ -1,5 +1,6 @@
 
 * enhancements
+  * Add helper to easily create the col_model. (col_model_for_jqgrid)
   * Support prefix in the id column of the json response.
   * Support I18n localization of date fields in the json response.
 

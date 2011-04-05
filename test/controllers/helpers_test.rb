@@ -54,4 +54,54 @@ class ControllerHelpersTest < ActionController::TestCase
     assert_equal hash["rows"][0]["id"], "mygrid_row_1"
   end
 
+  test "col_model_for_jqgrid should return a valid model for the grid" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @controller.col_model_for_jqgrid(columns)
+    assert_equal [
+      {:name => 'InvDate', :index => 'InvDate'},
+      {:name => 'Amount', :index => 'Amount'},
+      {:name => 'Total', :index => 'Total'}
+      ], result
+  end
+
+  test "col_model_for_jqgrid with default width for every column" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @controller.col_model_for_jqgrid(columns, {:width => 100})
+    assert_equal [
+      {:name => 'InvDate', :index => 'InvDate', :width => 100},
+      {:name => 'Amount', :index => 'Amount', :width => 100},
+      {:name => 'Total', :index => 'Total', :width => 100}
+      ], result
+  end
+
+  test "col_model_for_jqgrid with explicity width for some columns" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @controller.col_model_for_jqgrid(columns, {:width => {'inv_date' => 100, 'total' => 150}})
+    assert_equal [
+      {:name => 'InvDate', :index => 'InvDate', :width => 100},
+      {:name => 'Amount', :index => 'Amount'},
+      {:name => 'Total', :index => 'Total', :width => 150}
+      ], result
+  end
+
+  test "col_model_for_jqgrid with explicity property for some columns" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @controller.col_model_for_jqgrid(columns, {:property_1 => {'inv_date' => 'high', 'total' => 'low'}, :property_2 => true})
+    assert_equal [
+      {:name => 'InvDate', :index => 'InvDate', :property_1 => 'high', :property_2 => true},
+      {:name => 'Amount', :index => 'Amount', :property_2 => true},
+      {:name => 'Total', :index => 'Total', :property_1 => 'low', :property_2 => true}
+      ], result
+  end
+
+  test "col_model_for_jqgrid with proc as property" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @controller.col_model_for_jqgrid(columns, {:property_1 => Proc.new {|c| c.camelize}})
+    assert_equal [
+      {:name => 'InvDate', :property_1 => 'InvDate', :index => 'InvDate'},
+      {:name => 'Amount', :property_1 => 'Amount', :index => 'Amount'},
+      {:name => 'Total', :property_1 => 'Total', :index => 'Total'}
+      ], result
+  end
+
 end
