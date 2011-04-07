@@ -58,9 +58,9 @@ class ControllerHelpersTest < ActionController::TestCase
     columns = ['inv_date', 'amount', 'total' ]
     result  = @controller.col_model_for_jqgrid(columns)
     assert_equal [
-      {:name => 'InvDate', :index => 'InvDate'},
-      {:name => 'Amount', :index => 'Amount'},
-      {:name => 'Total', :index => 'Total'}
+      {:name => 'inv_date', :index => 'inv_date'},
+      {:name => 'amount', :index => 'amount'},
+      {:name => 'total', :index => 'total'}
       ], result
   end
 
@@ -68,9 +68,9 @@ class ControllerHelpersTest < ActionController::TestCase
     columns = ['inv_date', 'amount', 'total' ]
     result  = @controller.col_model_for_jqgrid(columns, {:width => 100})
     assert_equal [
-      {:name => 'InvDate', :index => 'InvDate', :width => 100},
-      {:name => 'Amount', :index => 'Amount', :width => 100},
-      {:name => 'Total', :index => 'Total', :width => 100}
+      {:name => 'inv_date', :index => 'inv_date', :width => 100},
+      {:name => 'amount', :index => 'amount', :width => 100},
+      {:name => 'total', :index => 'total', :width => 100}
       ], result
   end
 
@@ -78,9 +78,9 @@ class ControllerHelpersTest < ActionController::TestCase
     columns = ['inv_date', 'amount', 'total' ]
     result  = @controller.col_model_for_jqgrid(columns, {:width => {'inv_date' => 100, 'total' => 150}})
     assert_equal [
-      {:name => 'InvDate', :index => 'InvDate', :width => 100},
-      {:name => 'Amount', :index => 'Amount'},
-      {:name => 'Total', :index => 'Total', :width => 150}
+      {:name => 'inv_date', :index => 'inv_date', :width => 100},
+      {:name => 'amount', :index => 'amount'},
+      {:name => 'total', :index => 'total', :width => 150}
       ], result
   end
 
@@ -88,9 +88,9 @@ class ControllerHelpersTest < ActionController::TestCase
     columns = ['inv_date', 'amount', 'total' ]
     result  = @controller.col_model_for_jqgrid(columns, {:property_1 => {'inv_date' => 'high', 'total' => 'low'}, :property_2 => true})
     assert_equal [
-      {:name => 'InvDate', :index => 'InvDate', :property_1 => 'high', :property_2 => true},
-      {:name => 'Amount', :index => 'Amount', :property_2 => true},
-      {:name => 'Total', :index => 'Total', :property_1 => 'low', :property_2 => true}
+      {:name => 'inv_date', :index => 'inv_date', :property_1 => 'high', :property_2 => true},
+      {:name => 'amount', :index => 'amount', :property_2 => true},
+      {:name => 'total', :index => 'total', :property_1 => 'low', :property_2 => true}
       ], result
   end
 
@@ -98,9 +98,9 @@ class ControllerHelpersTest < ActionController::TestCase
     columns = ['inv_date', 'amount', 'total' ]
     result  = @controller.col_model_for_jqgrid(columns, {:property_1 => Proc.new {|c| c.camelize}})
     assert_equal [
-      {:name => 'InvDate', :property_1 => 'InvDate', :index => 'InvDate'},
-      {:name => 'Amount', :property_1 => 'Amount', :index => 'Amount'},
-      {:name => 'Total', :property_1 => 'Total', :index => 'Total'}
+      {:name => 'inv_date', :property_1 => 'InvDate', :index => 'inv_date'},
+      {:name => 'amount', :property_1 => 'Amount', :index => 'amount'},
+      {:name => 'total', :property_1 => 'Total', :index => 'total'}
       ], result
   end
 
