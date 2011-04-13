@@ -50,7 +50,7 @@ class ControllerHelpersTest < ActionController::TestCase
     assert_equal hash["total"], 1
     assert_equal hash["page"], 1
     assert_equal hash["records"], 1
-    assert_equal hash["rows"][0]["cell"], ["2011-01-01T00:00:00Z", 10.0, 11.0]
+    assert_equal hash["rows"][0]["cell"], [Time.utc('2011-01-01 00:00:00'), 10.0, 11.0]
     assert_equal hash["rows"][0]["id"], "mygrid_row_1"
   end
 
