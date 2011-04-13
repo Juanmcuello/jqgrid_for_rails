@@ -2,7 +2,7 @@
 
 This is a simple plug-in to create a JqGrid[http://www.trirand.com/blog] javascript code easily inside rails views.
 
-It is extremely flexible, all the ruby code is converted to java script code, so you can use all the jqgrid supported features. It is not an abstraction layer from the jqGrid apis, instead, you type the same code you would do to crate the grid using javascript but in Ruby. The code should follow the jqgrid api definition.
+It is extremely flexible, all the ruby code is converted to java script code, so you can use all the jqgrid supported features. It is not an abstraction layer from the jqGrid apis, instead, you type the same code you would do to create the grid using javascript but in Ruby. The code should follow the jqgrid api definition.
 
 For example, to get this java script code:
 
@@ -114,6 +114,44 @@ Don't forget to include the jquery and jqgrid javascript and stylesheet files!
 == Controllers
 
 There are convenient methods available in the controllers
+
+=== col_model_for_jqgrid
+
+This method easily creates an array to be used as col_model.
+
+  col_model_for_jqgrid(['inv_date', 'total' ], {:width => 100})
+
+    #=> [{:name=>"inv_date", :index=>"inv_date", :width=>100}, {:name=>"total", :index=>"total", :width=>100}]
+
+
+So, in the controller:
+
+  # app/controllers/invoices_controller.rb
+
+  class InvoicesController < ApplicationController
+
+    def show
+      @col_model = col_model_for_jqgrid(['inv_date', 'total' ], {:width => 180})
+    end
+  end
+
+
+And then you can use it when creating the grid in the helper:
+
+  grid = [{
+    :url => '/invoices',
+    :datatype => 'json',
+    :mtype => 'GET',
+    :colNames => ['Inv No','Date'],
+    :colModel  => @col_model,
+    :pager => '#invoices_pager',
+    :rowNum => 10,
+    :rowList => [10, 20, 30],
+    :caption => 'My first grid',
+    :onSelectRow => "function() { alert('Row selected!');}".to_json_var
+  }]
+
+  jqgrid_api 'invoices_list', grid
 
 === json_for_jqgrid
 
