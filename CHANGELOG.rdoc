@@ -1,3 +1,4 @@
+== 1.0.1
 
 * enhancements
   * Add helper to easily create the col_model. (col_model_for_jqgrid)
