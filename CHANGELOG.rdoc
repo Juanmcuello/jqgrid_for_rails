@@ -1,3 +1,6 @@
+* enhancements
+  * Allow the column name in the 'order_by' helper to be quoted.
+
 == 1.0.1
 
 * enhancements

@@ -31,6 +31,11 @@ class ControllerHelpersTest < ActionController::TestCase
     assert_nil @controller.order_by_from_params(params)
   end
 
+  test "order_by_from with quoting char" do
+    params = {'sidx' => 'updated_at', 'sord' => 'desc'}
+    assert_equal '`updated_at` desc', @controller.order_by_from_params(params, '`')
+  end
+
   test "json_for_grid with empty records result" do
     records = Invoice.paginate(:page => 1)
     json    = @controller.json_for_jqgrid(records)

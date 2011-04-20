@@ -83,19 +83,28 @@ module JqgridForRails
       end
 
       # Returns the 'order by' string created using the params received from the jqgrid.
+      # If +quote_char+ is specified, the column name used in the 'order by' clause will
+      # be quoted.
       #
       # ==== Example
       #
       #   order_by_from_params({'sidx' => 'updated_at', 'sord' => 'asc'})
       #   #=> 'updated_at asc'
       #
-      def order_by_from_params params
-        order_by = params['sidx'] unless params['sidx'].blank?
+      #   order_by_from_params({'sidx' => 'updated_at', 'sord' => 'desc'}, '`')
+      #   #=> '`updated_at` desc'
+      #
+      def order_by_from_params params, quote_char = nil
+        order_by = quote(params['sidx'], quote_char) unless params['sidx'].blank?
         order_by << " #{params['sord']}" if params['sord'] && order_by
         order_by
       end
 
     private
+
+      def quote value, quote_char
+        "#{quote_char}#{value}#{quote_char}"
+      end
 
       # Returns a hash with the values for a jqgrid json row.
       def row_from_record(r, columns, options)
