@@ -55,7 +55,9 @@ module JqgridForRails
       # ==== Options
       #
       # * <tt>:id_column</tt> - Says which is the column that should be used as
-      #   the row id.
+      #   the row id. This should a be the column name, but it can also be a
+      #   Proc, in which case the record will be passed to the proc. See examples
+      #   for more info.
       #
       # * <tt>:id_prefix</tt> - If specified, the +column_id+ option will be
       #   concatenated to this prefix. This helps to keep the html id unique in
@@ -67,6 +69,14 @@ module JqgridForRails
       #
       # * <tt>:page</tt> - Says the page number (Deprecated. The page number is
       #   now inferred from +records+.
+      #
+      # ==== Examples
+      #
+      #   records = Invoice.paginate(:page => 1)
+      #   my_proc = Proc.new {|r| "invid_#{r.invid}" }
+      #   json_for_jqgrid(records, ['invdate', 'amount', 'total' ], {:id_column => my_proc })
+      #
+      #   # => {"rows":[{"cell":["2011-01-01T00:00:00Z",10.0,11.0],"id":"invid_1"}],"total":1,"page":1,"records":1}
       #
       def json_for_jqgrid records, columns = nil, options = {}
 
@@ -118,8 +128,16 @@ module JqgridForRails
           end
         end
 
-        {:id => "#{options[:id_prefix]}#{attribs[options[:id_column]]}",
+        {:id => "#{options[:id_prefix]}#{id_column_from_options(r, options)}",
          :cell => attribs.values_at(*columns) }
+      end
+
+      def id_column_from_options record, options
+        if options[:id_column].class.to_s == 'Proc'
+          options[:id_column].call(record)
+        else
+          record.attributes[[options[:id_column]]]
+        end
       end
 
       def property_from_options col_name, options
@@ -136,6 +154,7 @@ module JqgridForRails
         end
         h
       end
+
     end
   end
 end

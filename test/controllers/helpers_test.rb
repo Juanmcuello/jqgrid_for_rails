@@ -1,4 +1,4 @@
-require 'test/test_helper' 
+require 'test/test_helper'
 
 class MockController < ApplicationController
 end
@@ -107,6 +107,17 @@ class ControllerHelpersTest < ActionController::TestCase
       {:name => 'amount', :property_1 => 'Amount', :index => 'amount'},
       {:name => 'total', :property_1 => 'Total', :index => 'total'}
       ], result
+  end
+
+  test "json_for_jqgrid with proc for id_column" do
+    tmp_record  = Invoice.create({:invid => 1, :invdate => '2011-01-01 00:00:00', :amount => 10, :tax => 1, :total => 11, :note => '' })
+    records     = Invoice.paginate(:page => 1)
+    my_proc     = Proc.new { |r| "invid_#{r.invid}" }
+    json        = @controller.json_for_jqgrid(records, ['invdate', 'amount', 'total' ], {:id_column => my_proc })
+    hash        = ActiveSupport::JSON.decode(json)
+    Invoice.delete(tmp_record.id)
+
+    assert_equal 'invid_1', hash["rows"].first["id"]
   end
 
 end

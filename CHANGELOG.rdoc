@@ -1,4 +1,5 @@
 * enhancements
+  * A proc is now accepted by id_column option in json_for_jqgrid method.
   * Allow the column name in the 'order_by' helper to be quoted.
 
 == 1.0.1
