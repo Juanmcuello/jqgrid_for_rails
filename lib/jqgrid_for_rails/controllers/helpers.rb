@@ -136,7 +136,7 @@ module JqgridForRails
         if options[:id_column].class.to_s == 'Proc'
           options[:id_column].call(record)
         else
-          record.attributes[[options[:id_column]]]
+          record.attributes[options[:id_column]]
         end
       end
 

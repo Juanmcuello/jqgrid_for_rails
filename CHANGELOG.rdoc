@@ -2,6 +2,9 @@
   * A proc is now accepted by id_column option in json_for_jqgrid method.
   * Allow the column name in the 'order_by' helper to be quoted.
 
+* bug fixes
+  * Fixes issue when using id_column in json_for_jqgrid method.
+
 == 1.0.1
 
 * enhancements
