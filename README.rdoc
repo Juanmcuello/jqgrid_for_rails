@@ -111,39 +111,23 @@ You can do it better using +content_for+ in the view:
 
 Don't forget to include the jquery and jqgrid javascript and stylesheet files!
 
-== Controllers
-
-There are convenient methods available in the controllers
-
 === col_model_for_jqgrid
 
-This method easily creates an array to be used as col_model.
+This helper easily creates an array to be used as col_model.
 
   col_model_for_jqgrid(['inv_date', 'total' ], {:width => 100})
 
     #=> [{:name=>"inv_date", :index=>"inv_date", :width=>100}, {:name=>"total", :index=>"total", :width=>100}]
 
 
-So, in the controller:
-
-  # app/controllers/invoices_controller.rb
-
-  class InvoicesController < ApplicationController
-
-    def show
-      @col_model = col_model_for_jqgrid(['inv_date', 'total' ], {:width => 180})
-    end
-  end
-
-
-And then you can use it when creating the grid in the helper:
+So you you can use it when creating the grid in the helper:
 
   grid = [{
     :url => '/invoices',
     :datatype => 'json',
     :mtype => 'GET',
     :colNames => ['Inv No','Date'],
-    :colModel  => @col_model,
+    :colModel  => col_model_for_jqgrid(['Inv No','Date']),
     :pager => '#invoices_pager',
     :rowNum => 10,
     :rowList => [10, 20, 30],
@@ -152,6 +136,10 @@ And then you can use it when creating the grid in the helper:
   }]
 
   jqgrid_api 'invoices_list', grid
+
+== Controllers
+
+There are convenient methods available in the controllers
 
 === json_for_jqgrid
 
