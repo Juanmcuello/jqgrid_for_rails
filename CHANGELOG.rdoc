@@ -1,6 +1,7 @@
 * enhancements
   * A proc is now accepted by id_column option in json_for_jqgrid method.
   * Allow the column name in the 'order_by' helper to be quoted.
+  * View helpers are now tested using ActionView::TestCase.
 
 * bug fixes
   * Fixes issue when using id_column in json_for_jqgrid method.
