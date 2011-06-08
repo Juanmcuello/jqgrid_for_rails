@@ -107,6 +107,47 @@ module JqgridsHelper
     end
   end
 
+  # Returns an array to be used as col_model for the grid where each item
+  # is a hash for each column. Each hash will have at least two keys by
+  # default, the +name+ and the +index+, whose values will be the name of
+  # the column. Other keys will be included if present in the +options+
+  # hash.
+  #
+  # * +columns+ - Array with the name of the columns to include in the
+  #   col_model.
+  #
+  # ==== Options
+  #
+  # Every item in the options hash will be a property in the col_model for
+  # every column, unless the item is also a hash, where only will be included
+  # in the specified columns. An item can be also a Proc, that will be called
+  # passing +columns+ as parameter.
+  #
+  # ==== Examples
+  #
+  #   col_model_for_jqgrid(['inv_date', 'total' ])
+  #
+  #     #=> [{:name=>"inv_date", :index=>"inv_date"}, {:name=>"total", :index=>"total"}]
+  #
+  #   col_model_for_jqgrid(['inv_date', 'total' ], {:width => 100})
+  #
+  #     #=> [{:name=>"inv_date", :index=>"inv_date", :width=>100}, {:name=>"total", :index=>"total", :width=>100}]
+  #
+  #   col_model_for_jqgrid(['inv_date', 'total'], {:width => {'inv_date' => 100}})
+  #
+  #     #=> [{:name => 'inv_date', :index => 'inv_date', :width => 100}, {:name => 'total', :index => 'total'}]
+  #
+  #   col_model_for_jqgrid(['inv_date'], {:prop => Proc.new {|c| c.camelize}})
+  #
+  #     #=> [{:name => 'inv_date', :index => 'inv_date', :prop => 'InvDate'}]
+  #
+  def col_model_for_jqgrid columns, options = {}
+    columns.map do |c|
+      h = {:name => c, :index => c}
+      h.merge property_from_options(c, options)
+    end
+  end
+
 private
 
   def wrap_with_document_ready! str
@@ -115,6 +156,21 @@ private
 
   def wrap_with_script_tags! str
     str.replace("<script>\n#{str}\n</script>")
+  end
+
+  def property_from_options col_name, options
+    h = {}
+    options.each do |k, v|
+      case v.class.to_s
+      when "Proc"
+        h[k] = v.call(col_name)
+      when "Hash"
+        h[k] = v[col_name] if v.has_key?(col_name)
+      else
+        h[k] = v
+      end
+    end
+    h
   end
 
 end

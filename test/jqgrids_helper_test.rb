@@ -71,4 +71,71 @@ class JqgridsHelperTest < ActionView::TestCase
 
   end
 
+  test "col_model_for_jqgrid should return a valid model for the grid" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @template.col_model_for_jqgrid(columns)
+    assert_equal [
+      {:name => 'inv_date', :index => 'inv_date'},
+      {:name => 'amount', :index => 'amount'},
+      {:name => 'total', :index => 'total'}
+      ], result
+  end
+
+  test "col_model_for_jqgrid with default width for every column" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @template.col_model_for_jqgrid(columns, {:width => 100})
+    assert_equal [
+      {:name => 'inv_date', :index => 'inv_date', :width => 100},
+      {:name => 'amount', :index => 'amount', :width => 100},
+      {:name => 'total', :index => 'total', :width => 100}
+      ], result
+  end
+
+  test "col_model_for_jqgrid with explicity width for some columns" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @template.col_model_for_jqgrid(columns, {:width => {'inv_date' => 100, 'total' => 150}})
+    assert_equal [
+      {:name => 'inv_date', :index => 'inv_date', :width => 100},
+      {:name => 'amount', :index => 'amount'},
+      {:name => 'total', :index => 'total', :width => 150}
+      ], result
+  end
+
+  test "col_model_for_jqgrid with explicity property for some columns" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @template.col_model_for_jqgrid(columns, {:property_1 => {'inv_date' => 'high', 'total' => 'low'}, :property_2 => true})
+    assert_equal [
+      {:name => 'inv_date', :index => 'inv_date', :property_1 => 'high', :property_2 => true},
+      {:name => 'amount', :index => 'amount', :property_2 => true},
+      {:name => 'total', :index => 'total', :property_1 => 'low', :property_2 => true}
+      ], result
+  end
+
+  test "col_model_for_jqgrid with proc as property" do
+    columns = ['inv_date', 'amount', 'total' ]
+    result  = @template.col_model_for_jqgrid(columns, {:property_1 => Proc.new {|c| c.camelize}})
+    assert_equal [
+      {:name => 'inv_date', :property_1 => 'InvDate', :index => 'inv_date'},
+      {:name => 'amount', :property_1 => 'Amount', :index => 'amount'},
+      {:name => 'total', :property_1 => 'Total', :index => 'total'}
+      ], result
+  end
+
+private
+
+  def expected_grid grid_id, pager_id, options
+
+    options[:script_tags] ||= true
+
+    js =  'jQuery(document).ready(function() {
+            jQuery("#' + grid_id + '").jqGrid({
+              "pager":jQuery(\'#' + pager_id + '\')
+            });
+          });'
+    js.gsub!(/\n\s+/, '')
+    js = "<script>\n#{js}\n</script>" if options[:script_tags]
+    js
+
+  end
+
 end
