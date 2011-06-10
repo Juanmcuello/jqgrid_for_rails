@@ -3,6 +3,7 @@
   * Allow the column name in the 'order_by' helper to be quoted.
   * View helpers are now tested using ActionView::TestCase.
   * col_model_for_jqgrid is moved from controller helpers to view helpers.
+  * :format option added to json_for_jqgrid helper.
 
 * bug fixes
   * Fixes issue when using id_column in json_for_jqgrid method.

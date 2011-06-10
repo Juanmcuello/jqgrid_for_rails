@@ -33,6 +33,11 @@ module JqgridForRails
       #   localized with the <tt>I18n.l</tt> method. The field content must be
       #   of any class accepted by the method. I.e. Time, DateTime, Date.
       #
+      # * <tt>:format</tt> - Says the proc and the columns where to apply it. It
+      #   can be used to change the format of the field as well as to run any other
+      #   code on it. If the key of the hash is not a column name but an array of
+      #   column names, the proc is applied to all of them.
+      #
       # * <tt>:page</tt> - Says the page number (Deprecated. The page number is
       #   now inferred from +records+.
       #
@@ -43,6 +48,13 @@ module JqgridForRails
       #   json_for_jqgrid(records, ['invdate', 'amount', 'total' ], {:id_column => my_proc })
       #
       #   # => {"rows":[{"cell":["2011-01-01T00:00:00Z",10.0,11.0],"id":"invid_1"}],"total":1,"page":1,"records":1}
+      #
+      #   records   = Invoice.paginate(:page => 1)
+      #   my_format = Proc.new {|val| val + 100 }
+      #   json_for_jqgrid(records, ['invdate', 'amount', 'total' ], {:format => { 'total' => my_format })
+      #
+      #   # Because of the :format option, 100 is added to 'total' field.
+      #   # => {"rows":[{"cell":["2011-01-01T00:00:00Z",10.0,111.0],"id":"invid_1"}],"total":2,"page":1,"records":1}
       #
       def json_for_jqgrid records, columns = nil, options = {}
 
@@ -86,13 +98,9 @@ module JqgridForRails
       def row_from_record(r, columns, options)
         attribs = r.attributes
 
-        # Localize Date, Time or DateTime fields
-        locale_classes = [Time, Date, DateTime]
-        if options[:translate].is_a?(Array) && I18n
-          options[:translate].each do |col|
-            attribs[col.to_s] = I18n.l(attribs[col.to_s]) if locale_classes.include?(attribs[col.to_s].class)
-          end
-        end
+        localize(attribs, options[:translate]) if options[:translate]
+
+        format(attribs, options[:format]) if options[:format]
 
         {:id => "#{options[:id_prefix]}#{id_column_from_options(r, options)}",
          :cell => attribs.values_at(*columns) }
@@ -119,6 +127,29 @@ module JqgridForRails
           end
         end
         h
+      end
+
+      # Localize Date, Time or DateTime fields
+      def localize attribs, translate
+        locale_classes = [Time, Date, DateTime]
+        if translate.is_a?(Array) && I18n
+          translate.each do |col|
+            attribs[col.to_s] = I18n.l(attribs[col.to_s]) if locale_classes.include?(attribs[col.to_s].class)
+          end
+        end
+      end
+
+      # Format fields
+      def format attribs, format
+        if format.is_a?(Hash)
+          format.each do |col, pr|
+            if col.is_a?(Array)
+              col.each {|c| attribs[c] = pr.call(attribs[c])}
+            else
+              attribs[col] = pr.call(attribs[col])
+            end
+          end
+        end
       end
 
     end

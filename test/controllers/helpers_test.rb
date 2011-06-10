@@ -70,4 +70,28 @@ class ControllerHelpersTest < ActionController::TestCase
     assert_equal 'invid_1', hash["rows"].first["id"]
   end
 
+  test "json_for_jqgrid should allow to format field with a proc" do
+    tmp_record  = Invoice.create({:invid => 1, :invdate => '2011-01-01 00:00:00', :amount => 10, :tax => 1, :total => 11, :note => '123,456.123' })
+    records     = Invoice.paginate(:page => 1)
+    my_proc     = Proc.new { |r| (r.gsub(/,/, '').to_f) }
+    json        = @controller.json_for_jqgrid(records, ['invdate', 'amount', 'total', 'note' ], {:format => {'note' => my_proc }})
+    hash        = ActiveSupport::JSON.decode(json)
+    Invoice.delete(tmp_record.id)
+
+    assert_equal 123456.123, hash["rows"].first["cell"].last
+  end
+
+  test "json_for_jqgrid should allow to format many fields with a proc" do
+    tmp_record  = Invoice.create({:invid => 1, :invdate => '2011-01-01 00:00:00', :amount => 10, :tax => 1, :total => 11, :note => '123,456.123' })
+    records     = Invoice.paginate(:page => 1)
+    my_proc     = Proc.new { |r| (r * 2) }
+    json        = @controller.json_for_jqgrid(records, ['invdate', 'amount', 'total', 'note' ], {:format => {['amount', 'total'] => my_proc }})
+    hash        = ActiveSupport::JSON.decode(json)
+    Invoice.delete(tmp_record.id)
+
+    assert_equal 20, hash["rows"].first["cell"][1]
+    assert_equal 22, hash["rows"].first["cell"][2]
+  end
+
+
 end
