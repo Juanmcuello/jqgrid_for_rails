@@ -1,4 +1,7 @@
+== 1.0.2
+
 * enhancements
+  * Support joins and includes in column names.
   * A proc is now accepted by id_column option in json_for_jqgrid method.
   * Allow the column name in the 'order_by' helper to be quoted.
   * View helpers are now tested using ActionView::TestCase.
