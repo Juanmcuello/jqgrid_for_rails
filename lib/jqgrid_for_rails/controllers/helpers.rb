@@ -96,17 +96,18 @@ module JqgridForRails
 
       # Returns a hash with the values for a jqgrid json row.
       def row_from_record(r, columns, options)
+
+        attribs = columns.each_with_object({}) do |column, hash|
+          hash[column] = column.split('.').inject(r) { |o, a| o.public_send(a) }
+        end
+
         localize(attribs, options[:translate]) if options[:translate]
 
         format(attribs, options[:format]) if options[:format]
 
-        values = columns.map do |column|
-          column.split('.').inject(r) { |o, a| o.public_send(a) }
-        end
-
         {
           :id   => "#{options[:id_prefix]}#{id_column_from_options(r, options)}",
-          :cell => values
+          :cell => attribs.values_at(*columns)
         }
       end
 
