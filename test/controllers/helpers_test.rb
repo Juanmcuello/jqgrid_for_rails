@@ -40,7 +40,7 @@ class ControllerHelpersTest < ActionController::TestCase
     records = Invoice.paginate(:page => 1)
     json    = @controller.json_for_jqgrid(records)
     hash    = ActiveSupport::JSON.decode(json)
-    assert_equal 0, hash['total']
+    assert_equal 1, hash['total']
     assert_equal [], hash['rows']
     assert_equal 1, hash['page']
     assert_equal 0, hash['records']
