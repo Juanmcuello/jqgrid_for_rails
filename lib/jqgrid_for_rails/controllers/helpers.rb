@@ -58,7 +58,7 @@ module JqgridForRails
       #
       def json_for_jqgrid records, columns = nil, options = {}
 
-        columns ||= (records.first.attributes.keys rescue [])
+        columns ||= (records[0].attributes.keys rescue [])
 
         options[:id_column] ||= columns.first
         options[:page]      ||= records.current_page
